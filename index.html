@@ -3,325 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Personal</title>
+    <title>Moisés Araya Ramírez</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8ff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            color: #333;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        body.dark-mode {
-            background-color: #2c2c2c;
-            color: #fff;
-        }
-        header {
-            width: 100%;
-            background-color: #0066cc;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        header.dark-mode {
-            background-color: #004c99;
-        }
-        header h1 {
-            font-size: 2.5em;
-            margin: 0;
-            font-weight: 700;
-        }
-        header p {
-            font-size: 1.2em;
-            margin: 10px 0 0 0;
-            font-weight: 300;
-        }
-        .mode-switch {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .mode-switch input {
-            display: none;
-        }
-        .mode-switch label {
-            cursor: pointer;
-            text-indent: -9999px;
-            width: 52px;
-            height: 27px;
-            background: grey;
-            display: block;
-            border-radius: 100px;
-            position: relative;
-        }
-        .mode-switch label:after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 23px;
-            height: 23px;
-            background: #fff;
-            border-radius: 90px;
-            transition: 0.3s;
-            background-image: url('sOL.png'); /* Ruta de tu icono de sol */
-            background-size: cover;
-        }
-        .mode-switch input:checked + label {
-            background: #0066cc;
-        }
-        .mode-switch input:checked + label:after {
-            left: calc(100% - 2px);
-            transform: translateX(-100%);
-            background-image: url('Luna.png'); /* Ruta de tu icono de luna */
-            background-size: cover;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #005bb5;
-            padding: 10px 0;
-        }
-        nav.dark-mode {
-            background-color: #003366;
-        }
-        nav a {
-            color: #fff;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-            transition: background-color 0.3s ease;
-            font-weight: 500;
-        }
-        nav a:hover {
-            background-color: #004c99;
-        }
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin: 20px 0;
-            display: flex;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .container.dark-mode {
-            background-color: #444;
-        }
-        .photo {
-            flex: 1;
-            text-align: center;
-            background: linear-gradient(145deg, #0066cc, #6699ff);
-            color: #fff;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px 0 0 10px;
-            position: relative;
-            min-width: 300px;
-            transition: background 0.3s ease;
-        }
-        .photo.dark-mode {
-            background: linear-gradient(145deg, #003366, #005bb5);
-        }
-        .photo img {
-            width: 80%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        .background-icons {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 20px;
-            opacity: 0.2;
-        }
-        .background-icons img {
-            width: 60px;
-            height: 60px;
-            transform: rotate(var(--rotate));
-        }
-        .icon1 { --rotate: -10deg; }
-        .icon2 { --rotate: 15deg; }
-        .icon3 { --rotate: -5deg; }
-        .icon4 { --rotate: 10deg; }
-        .icon5 { --rotate: -15deg; }
-        .content {
-            flex: 2;
-            padding: 40px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .content.dark-mode {
-            background-color: #444;
-            color: #fff;
-        }
-        .content h2 {
-            color: #0066cc;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        .content h2.dark-mode {
-            color: #6699ff;
-        }
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            flex: 1 1 calc(50% - 20px);
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-        }
-        .card.dark-mode {
-            background-color: #555;
-            color: #fff;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-        .card-icon {
-            font-size: 40px;
-            color: #0066cc;
-            margin-right: 20px;
-        }
-        .card-icon.dark-mode {
-            color: #6699ff;
-        }
-        .card-content {
-            flex: 1;
-        }
-        .card-title {
-            color: #0066cc;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        .card-title.dark-mode {
-            color: #6699ff;
-        }
-        .card-text {
-            color: #666;
-            margin: 0;
-        }
-        .card-text.dark-mode {
-            color: #ccc;
-        }
-        .buttons, .links {
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        .buttons a, .links a {
-            display: inline-block;
-            padding: 15px 25px;
-            background: linear-gradient(145deg, #0066cc, #6699ff);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-        .buttons a.dark-mode, .links a.dark-mode {
-            background: linear-gradient(145deg, #003366, #005bb5);
-        }
-        .buttons a:hover, .links a:hover {
-            background: linear-gradient(145deg, #6699ff, #0066cc);
-            transform: translateY(-5px);
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #0066cc;
-            color: #fff;
-            width: 100%;
-            position: relative;
-            bottom: 0;
-            transition: background-color 0.3s ease;
-        }
-        footer.dark-mode {
-            background-color: #003366;
-        }
-        footer p {
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" type="image/png"> <!-- Añadir esta línea -->
 </head>
 <body>
     <header>
         <h1>Moisés Araya Ramírez</h1>
-        <p>Estudiante de Ingenieria Civil Informatica.</p>
+        <p>Estudiante de Ingeniería Civil Informática.</p>
         <div class="mode-switch">
             <input type="checkbox" id="dark-mode-switch">
             <label for="dark-mode-switch">Modo Oscuro</label>
         </div>
     </header>
     <nav>
-        <a href="#about">Sobre Mí</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#contact">Contacto</a>
+        <a href="personal.html">Información Personal</a>
+        <a href="academica.html">Información Académica</a>
+        <a href="contacto.html">Contacto</a>
     </nav>
     <div class="container">
         <div class="photo">
-            <div class="background-icons">
-                <img src="1086685.png" class="icon1" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon2" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon3" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon4" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon5" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon1" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon2" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon3" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon4" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon5" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon1" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon2" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon3" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon4" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon5" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon1" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon2" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon3" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon4" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon5" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon1" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon2" alt="Icono de Computación">
-                <img src="f82a1bfc6d511056d6ac693284ef915c.png" class="icon3" alt="Icono de Programación">
-                <img src="58e8b4f804466463b9292203370218d0.png" class="icon4" alt="Icono de Tecnología">
-                <img src="1086685.png" class="icon5" alt="Icono de Computación">
-            </div>
             <img src="foto.jpg" alt="Mi Foto">
         </div>
         <div class="content">
-            <h2 id="about">Sobre Mí</h2>
+            <h2>Bienvenido</h2>
             <div class="cards">
                 <div class="card">
                     <div class="card-icon">💼</div>
@@ -369,49 +75,11 @@
                     </div>
                 </div>
             </div>
-            <div class="buttons">
-                <a href="#personal-info">Información Personal</a>
-                <a href="#academic-info">Información Académica</a>
-            </div>
-            <div class="links">
-                <a href="https://instagram.com" target="_blank">Instagram</a>
-                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-                <a href="https://github.com" target="_blank">GitHub</a>
-            </div>
         </div>
     </div>
     <footer>
         <p>&copy; 2024 Moisés Araya. Todos los derechos reservados.</p>
     </footer>
-    <script>
-        const switchElement = document.getElementById('dark-mode-switch');
-        const body = document.body;
-        const header = document.querySelector('header');
-        const nav = document.querySelector('nav');
-        const container = document.querySelector('.container');
-        const content = document.querySelector('.content');
-        const cards = document.querySelectorAll('.card');
-        const cardTitles = document.querySelectorAll('.card-title');
-        const cardTexts = document.querySelectorAll('.card-text');
-        const cardIcons = document.querySelectorAll('.card-icon');
-        const buttons = document.querySelectorAll('.buttons a');
-        const links = document.querySelectorAll('.links a');
-        const footer = document.querySelector('footer');
-
-        switchElement.addEventListener('change', () => {
-            body.classList.toggle('dark-mode');
-            header.classList.toggle('dark-mode');
-            nav.classList.toggle('dark-mode');
-            container.classList.toggle('dark-mode');
-            content.classList.toggle('dark-mode');
-            footer.classList.toggle('dark-mode');
-            cards.forEach(card => card.classList.toggle('dark-mode'));
-            cardTitles.forEach(title => title.classList.toggle('dark-mode'));
-            cardTexts.forEach(text => text.classList.toggle('dark-mode'));
-            cardIcons.forEach(icon => icon.classList.toggle('dark-mode'));
-            buttons.forEach(button => button.classList.toggle('dark-mode'));
-            links.forEach(link => link.classList.toggle('dark-mode'));
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
